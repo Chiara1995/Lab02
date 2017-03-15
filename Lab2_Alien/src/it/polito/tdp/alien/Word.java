@@ -16,9 +16,48 @@ public class Word {
 	}
 	
 	public String TranslationWord(String a){
-		if(word.containsKey(a))
-			return word.get(a);
-		else
-			return "Word isn't in the dictionary";
+		boolean trovato=true;
+		List<String> risultato=new LinkedList<String>();
+		//numero ricorrenze ? nella parola
+		int cont=0;
+		for(int h=0; h<a.length(); h++){
+			if(a.charAt(h)=='?')
+				cont++;
+		}
+		if(cont==0){
+			//nessun carattere ?
+			if(word.containsKey(a))
+				return word.get(a);
+			else
+				return "Word isn't in the dictionary";
+		}
+		if(cont==1){
+			//un carattere ?
+			List<String> ltemp=new LinkedList<String>();
+			ltemp.addAll(word.keySet());
+			for(int j=0; j<ltemp.size(); j++){
+				if(ltemp.get(j).length()==a.length()){
+					for(int k=0; k<ltemp.get(j).length(); k++){
+						trovato=true;
+						if(ltemp.get(j).charAt(k)!=a.charAt(k) && a.charAt(k)!='?'){
+							trovato=false;
+							break;
+						}
+					}
+					if(trovato==true)
+						risultato.add(ltemp.get(j));
+				}
+			}
+			if(risultato.size()!=0){
+				String stampa="";
+				for(int g=0; g<risultato.size(); g++){
+					stampa+=risultato.get(g)+" "+word.get(risultato.get(g))+"\n";
+				}
+				return stampa;
+			}
+			
+			return "Wildcard isn't in the dictionary"; 
+		}
+		return "Insert only one character ?";	
 	}
 }
