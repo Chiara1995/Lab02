@@ -17,6 +17,9 @@ import javafx.scene.control.TextField;
 
 public class AlienController {
 	
+	private Word dizionario=new Word();
+	private boolean WordOk=false;
+	
     @FXML
     private ResourceBundle resources;
     @FXML
@@ -43,13 +46,41 @@ public class AlienController {
     
     @FXML
     void doTranslate(ActionEvent event) {
-    	    	
+    	for(int i=0; i<txtWord.getText().length(); i++){
+    		if((txtWord.getText().toLowerCase().charAt(i)>='a' && txtWord.getText().toLowerCase().charAt(i)<='z') || txtWord.getText().toLowerCase().charAt(i)==' ' || txtWord.getText().toLowerCase().charAt(i)=='?')
+    			WordOk=true;
+    		else{	
+    			txtResult.setText("Insert a word");
+    			return;
+    		}	
+    	}
+	    if(WordOk){
+	    	if(txtWord.getText().contains(" ")){
+	    		//Due word
+	    		String array[]=txtWord.getText().split(" ");
+	    		if(array.length>2){
+	    			txtResult.setText("Insert only one or two words");
+	    			return;
+	    		}
+	    		String AlienWord=array[0].toLowerCase();
+	    		String TranslateWord=array[1].toLowerCase();
+	    		dizionario.addWord(AlienWord, TranslateWord);
+	    		txtResult.setText(TranslateWord);	
+	    		txtWord.clear();
+	    	}
+	    	else{
+	    		//Una word
+	    		txtResult.setText(dizionario.TranslationWord(txtWord.getText().toLowerCase()));
+	    		txtWord.clear();
+	    	}
+	    }
+
     }
     
     
     @FXML
     void doReset(ActionEvent event) {
-
+    	txtResult.clear();
     }
     
 }
