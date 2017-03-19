@@ -58,12 +58,12 @@
             </HBox>
             <HBox alignment="CENTER">
                <children>
-                  <TextArea fx:id="txtResult" editable="false" prefHeight="161.0" prefWidth="463.0" text="Welcome to Alien Dictionary v2016." />
+                  <TextArea fx:id="txtResult" editable="false" prefHeight="166.0" prefWidth="483.0" text="Welcome to Alien Dictionary v2016." />
                </children>
             </HBox>
             <HBox alignment="BASELINE_RIGHT">
                <children>
-                  <Button fx:id="btnReset" alignment="BASELINE_RIGHT" mnemonicParsing="false" onAction="#doReset" text="Clear Text" />
+                  <Button fx:id="btnReset" alignment="BASELINE_RIGHT" mnemonicParsing="false" onAction="#doReset" prefHeight="31.0" prefWidth="90.0" text="Clear Text" />
                </children>
                <VBox.margin>
                   <Insets top="20.0" />
