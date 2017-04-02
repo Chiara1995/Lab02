@@ -47,7 +47,7 @@ public class AlienController {
     @FXML
     void doTranslate(ActionEvent event) {
     	for(int i=0; i<txtWord.getText().length(); i++){
-    		if((txtWord.getText().toLowerCase().charAt(i)>='a' && txtWord.getText().toLowerCase().charAt(i)<='z') || txtWord.getText().toLowerCase().charAt(i)==' ' || txtWord.getText().toLowerCase().charAt(i)=='?')
+    		if((txtWord.getText().toLowerCase().charAt(i)>='a' /*oppure txtWorld.matches("[a-zA-Z]*")*/&& txtWord.getText().toLowerCase().charAt(i)<='z') || txtWord.getText().toLowerCase().charAt(i)==' ' || txtWord.getText().toLowerCase().charAt(i)=='?')
     			WordOk=true;
     		else{	
     			txtResult.setText("Insert a word");
@@ -58,6 +58,16 @@ public class AlienController {
 	    	if(txtWord.getText().contains(" ")){
 	    		//Due word
 	    		String array[]=txtWord.getText().split(" ");
+	    		/*
+	    		 * oppure
+	    		 * StringTokenizer st=new StringTokenizer(riga, " ");
+	    		 * String alienWord=st.nextToken();
+	    		 * if(st.hasMoreTokens()){
+	    		 * 		String translation=st.netxToken();
+	    		 * 		...
+	    		 * }
+	    		 * 
+	    		 */
 	    		if(array.length>2){
 	    			txtResult.setText("Insert only one or two words");
 	    			return;
@@ -81,6 +91,7 @@ public class AlienController {
     @FXML
     void doReset(ActionEvent event) {
     	txtResult.clear();
+    	txtWord.clear();
     }
     
 }
